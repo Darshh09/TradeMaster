@@ -25,6 +25,7 @@ public class JwtTokenValidator extends OncePerRequestFilter {
         String jwt = request.getHeader(JwtConstant.JWT_HEADER);
 
         if (jwt != null) {
+            System.out.println("Ass");
             jwt = jwt.replace("Bearer ", "");
             try{
                 SecretKey key= Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
@@ -42,6 +43,7 @@ public class JwtTokenValidator extends OncePerRequestFilter {
                 throw new RuntimeException("Invalid JWT token");
             }
             filterChain.doFilter(request, response);
+
         }
     }
 
